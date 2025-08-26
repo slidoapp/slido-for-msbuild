@@ -1,0 +1,16 @@
+<Project>
+  <UsingTask TaskName="Slido.Build.ChangeFileVersion" AssemblyFile="$(OutputPath)Slido.BuildTasks.dll" />
+  
+  <ItemGroup>
+    <TestFiles Include="Serilog.dll">
+      <Version>$(NewSerilogVersion)</Version>
+    </TestFiles>
+	  <TestFiles Include="System.Text.Json.dll">
+		  <Version>$(NewSystemTextJsonVersion)</Version>
+	  </TestFiles>
+  </ItemGroup>
+  
+  <Target Name="ChangeFileVersion">
+    <ChangeFileVersion Files="@(TestFiles)" MsiFileName="$(MsiPath)" />
+  </Target>
+</Project>
