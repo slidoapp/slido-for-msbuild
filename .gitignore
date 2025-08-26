@@ -45,6 +45,8 @@ $RECYCLE.BIN/
 *.msix
 *.msm
 *.msp
+# We need database.msi for tests
+!tests/database.msi
 
 # Windows shortcuts
 *.lnk
