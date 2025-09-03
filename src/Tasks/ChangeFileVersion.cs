@@ -25,7 +25,7 @@ namespace Slido.Build
                     Log.LogWarning("No files specified for version change.");
                     return true;
                 }
-                Log.LogMessage(MessageImportance.Normal, $"Updating File table in MSI located in {MsiPath}");
+                Log.LogMessage(MessageImportance.Normal, $"Updating File table in MSI located in {MsiPath}.");
 
                 using (var database = new Database(MsiPath, DatabaseOpenMode.Transact))
                 {
@@ -34,21 +34,21 @@ namespace Slido.Build
                         var fileName = file.ItemSpec;
                         var version = file.GetMetadata("Version");
 
-                        Log.LogMessage(MessageImportance.High, $"Setting version {version} for the file {fileName}");
+                        Log.LogMessage(MessageImportance.High, $"Setting version {version} for the file {fileName}.");
 
                         if (string.IsNullOrEmpty(version))
                         {
-                            Log.LogWarning($"No version was specified for the file {fileName}");
+                            Log.LogWarning($"No version was specified for the file {fileName}.");
                             continue;
                         }
 
                         if (UpdateFileVersion(database, fileName, version))
                         {
-                            Log.LogMessage(MessageImportance.High, $"Version of {fileName} was updated to {version}");
+                            Log.LogMessage(MessageImportance.High, $"Version of {fileName} was updated to {version}.");
                         }
                         else
                         {
-                            Log.LogWarning($"File not found in File table: {fileName}");
+                            Log.LogWarning($"File not found in File table: {fileName}.");
                         }
                     }
                     database.Commit();
